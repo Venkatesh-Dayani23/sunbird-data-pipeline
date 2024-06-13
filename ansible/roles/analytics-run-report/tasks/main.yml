@@ -1,10 +1,26 @@
 - name: Get the report_config
   shell: 'curl -H "Content-Type: application/json" -H "Authorization: {{ druid_report_token }}" {{ druid_report_url_endpoint }}/{{ report_id }}'
   register : output
+  
+- name: Debug output.stdout
+  debug:
+    var: output.stdout
 
 - set_fact:
    config:  "{{ output.stdout | from_json }}"
+   
+- name: Debug config
+    debug:
+      var: config
+      
+- name: Debug config.result
+  debug:
+    var: config.result
 
+- name: Debug config.result.config
+  debug:
+    var: config.result.config      
+      
 - set_fact:
    report_config: "{{ config.result.config | to_json }}"
 
