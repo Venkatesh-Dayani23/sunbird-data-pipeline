@@ -10,8 +10,8 @@
    config:  "{{ output.stdout | from_json }}"
    
 - name: Debug config
-    debug:
-      var: config
+  debug:
+    var: config
       
 - name: Debug config.result
   debug:
